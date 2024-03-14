@@ -38,9 +38,10 @@ $(TARGET): ${SRC}
 	cp $@ lib$@
 	make clean_obj
 
-build:
+build: $(TARGET)
 	mkdir build
-	cd ./build/ && qmake ../ && make  && mv $(APP_NAME)
+	cd ./build
+	$(CC) $(STDFLAGS) 
 
 install: build
 	@mkdir $(HOME)/Desktop/SmartCalc_v1.0/
@@ -79,7 +80,7 @@ else
 	$(CC) $(STDFLAGS) $(GCOV_FLAGS) ${TEST_SRC} ${SRC} -o test $(LIBS) $(LINUX_FLAGS)
 endif
 	./test
-	lcov -t "stest" -o s21_test.info -c -d .
+	lcov -t "stest" -o s21_test.info -c -d --no-external .
 	genhtml -o report s21_test.info
 	$(OPEN_CMD) ./report/index.html
 
