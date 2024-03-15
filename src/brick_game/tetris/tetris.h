@@ -1,6 +1,8 @@
 #ifndef TETRIS_H
 #define TETRIS_H
 
+#include <ncurses.h>
+
 #define TICKS_START 30
 
 enum { GAMEOVER, PLAYING };

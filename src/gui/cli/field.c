@@ -1,4 +1,5 @@
 #include "field.h"
+#include <curses.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -26,23 +27,24 @@ void print_game(Tetris_game *game) {
   Tetris_figure *figure = game->figure;
   for (int i = 0; i < field->height; ++i) {
     for (int ii = 0; ii < field->width; ++ii) {
-      int symbol = 0;
+      int pixel = 1;
       if (field->blocks[i * field->width + ii].is_block_on_field != 0) {
-        symbol = 1;
+        pixel = 2;
       } else {
         int x = ii - figure->x;
         int y = i - figure->y;
         if (x >= 0 && x < figure->size && y >= 0 && y < figure->size) {
           if (figure->blocks[y * figure->size + x].is_block_on_field != 0) {
-            symbol = 1;
+            pixel = 2;
           }
         }
       }
-      printf("%d", symbol);
+      attron(COLOR_PAIR(pixel));
+      mvaddch(i, ii, ' ');
+      attroff(COLOR_PAIR(pixel));
     }
   printf("\n");
   }
-  fflush(stdout);
 }
 
 void free_figures(Tetris_figures *figures) {
