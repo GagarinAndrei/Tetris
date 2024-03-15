@@ -3,12 +3,16 @@
 #include <malloc/_malloc.h>
 #include <stdlib.h>
 
-Tetris_game *create_game(int field_width, int field_height, int figure_size,
+Tetris_game *create_game(int field_width, int field_height, int figures_size,
                          int count, Tetris_block *figure_templates) {
 
   Tetris_game *game = (Tetris_game *)malloc(sizeof(Tetris_game));
   game->field = create_field(field_width, field_height);
-  game->figures = create_figures(count, figure_size, figure_templates);
+  game->figures = create_figures(count, figures_size, figure_templates);
+  game->ticks = TICKS_START;
+  game->ticks_left = TICKS_START;
+  game->score = 0;
+  game->playing = PLAYING;
   return game;
 }
 

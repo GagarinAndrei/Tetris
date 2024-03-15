@@ -1,6 +1,8 @@
 #ifndef TETRIS_H
 #define TETRIS_H
 
+#define TICKS_START 30
+
 enum { GAMEOVER, PLAYING };
 
 enum { PLAYER_INACTION, PLAYER_UP, PLAYER_DOWN, PLAYER_LEFT, PLAYER_RIGHT };
@@ -44,7 +46,7 @@ typedef struct Tetris_game {
 } Tetris_game;
 
 Tetris_figure *create_figure(Tetris_game *game);
-Tetris_game *create_game(int field_width, int field_height, int figure_size,
+Tetris_game *create_game(int field_width, int field_height, int figures_size,
                          int count, Tetris_block *figure_templates);
 Tetris_figure *rotate(Tetris_game *game);
 void calculate_game_act(Tetris_game *game);

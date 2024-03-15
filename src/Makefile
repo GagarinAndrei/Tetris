@@ -6,8 +6,8 @@ LINUX_FLAGS=-lrt -lpthread -lm -lsubunit
 LIBS=-lcheck
 APP = build/Tetris.app 
 VALGRIND_FLAGS=--trace-children=yes --track-fds=yes --track-origins=yes --leak-check=full --show-leak-kinds=all --verbose
-# SOURCE_SUBDIRS := brick_game/tetris gui/cli
-# OBJECT_DIRS := $(add prefix $(SOURCE_DIRS)/, $(SOURCE_SUBDIRS))
+SOURCE_SUBDIRS := brick_game/tetris gui/cli
+OBJECT_DIRS := $(add prefix $(SOURCE_DIRS)/, $(SOURCE_SUBDIRS))
 
 TARGET=s21_tetris.a
 
